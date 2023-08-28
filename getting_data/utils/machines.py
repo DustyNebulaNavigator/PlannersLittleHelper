@@ -25,7 +25,7 @@ class Machines:
             "74FE485A146C":{"name": "M0091", "inputs": self.inputs},
             "74FE485A146D":{"name": "M0273", "inputs": self.inputs},
             "74FE485A1470":{"name": "M0102", "inputs": self.inputs},
-            "74FE485A1477":{"name": "M0602", "inputs": self.inputs},
+            "74FE485A1477":{"name": "M0501", "inputs": self.inputs},
             "74FE485A147F":{"name": "M0057", "inputs": self.inputs},
             "74FE485A1480":{"name": "M0202", "inputs": self.inputs},
             "74FE485A1482":{"name": "M1002", "inputs": self.inputs},

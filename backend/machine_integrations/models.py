@@ -10,3 +10,7 @@ class Impulses(models.Model):
 
     def __str__(self):
         return f"{machine_name}"
+
+class Machines(models.Model):
+    machine_name = models.CharField(max_length=255, unique=True)
+    status = models.CharField(max_length=255)

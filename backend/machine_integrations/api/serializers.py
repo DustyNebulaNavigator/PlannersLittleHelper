@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Impulses
+from ..models import Impulses, Machines
 
 
 class ImpulseSerializer(serializers.ModelSerializer):
@@ -13,3 +13,9 @@ class CycleTimeSerializer(serializers.Serializer):
     cycle_time = serializers.FloatField()
     cycle_time_calc_start = serializers.JSONField()
     cycle_time_calc_end = serializers.JSONField()
+    
+
+class MachineStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Machines
+        fields = ('machine_name', 'status')

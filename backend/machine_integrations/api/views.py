@@ -3,8 +3,8 @@ from django.utils import timezone
 from rest_framework.viewsets import ModelViewSet
 from dataclasses import dataclass
 
-from ..models import Impulses
-from .serializers import ImpulseSerializer, CycleTimeSerializer
+from ..models import Impulses, Machines
+from .serializers import ImpulseSerializer, CycleTimeSerializer, MachineStatusSerializer
 
 
 class ImpulseViewSet(ModelViewSet):
@@ -29,7 +29,7 @@ class CycleTimeViewSet(ModelViewSet):
             'M0041', 'M0301', 'M0122', 'M0052', 'M0451',
             'M0084', 'M0044', 'M0054', 'M0422', 'M0055',
             'M0253', 'M0056', 'M1003', 'M0281', 'M0091',
-            'M0273', 'M0102', 'M0602', 'M0057', 'M0202',
+            'M0273', 'M0102', 'M0501', 'M0057', 'M0202',
             'M1002', 'M0221', 'M0352', 'M0402', 'M0901',
             'M0051', 'M0025', 'M0123', 'M0042', 'M0101',
             'M0201', 'M0121', 'M0222', 'M0131', 'OTSI'
@@ -39,7 +39,7 @@ class CycleTimeViewSet(ModelViewSet):
             'M0091', 'M0131', 'M0153', 'M0201', 'M0202',
             'M0221', 'M0222', 'M0253', 'M0273', 'M0281',
             'M0301', 'M0352', 'M0402', 'M0422', 'M0451',  
-            'M0602', 'M0901', 'M1002', 'M1003'
+            'M0501', 'M0901', 'M1002', 'M1003'
             
              
         ]
@@ -77,3 +77,7 @@ class CycleTimeViewSet(ModelViewSet):
 
         return data
 
+class MachineStatusViewSet(ModelViewSet):
+    queryset = Machines.objects.all()
+    serializer_class = MachineStatusSerializer
+    

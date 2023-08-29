@@ -10,10 +10,10 @@ function App() {
   
 
   return (
-    <>
+    <div className='container'>
     <CycleTimesPage />
       
-    </>
+    </div>
   )
 }
 

@@ -4,37 +4,24 @@ from typing import List, Optional
 from datetime import datetime
 
 DATABASE_NAME = config('DATABASE_NAME')
-DATABASE_TABLE_NAME = config('DATABASE_TABLE_NAME')
 DATABASE_USER = config('DATABASE_USER')
 DATABASE_PASSWORD = config('DATABASE_PASSWORD')
 DATABASE_HOST = config('DATABASE_HOST')
+DATABASE_TABLE_IMPULSES = config('DATABASE_TABLE_IMPULSES')
+DATABASE_TABLE_MACHINES = config('DATABASE_TABLE_MACHINES')
 
 
 class Database:
     def __init__(self, machine_names: List[str]):
         self.conn = psycopg2.connect(dbname=DATABASE_NAME, user=DATABASE_USER, password=DATABASE_PASSWORD, host=DATABASE_HOST)
-        self.table_name = DATABASE_TABLE_NAME
+        self.table_name_machines = DATABASE_TABLE_MACHINES
+        self.table_name_impulses = DATABASE_TABLE_IMPULSES
         self.cursor = self.conn.cursor()
-        #self.create_table(machine_names)
     
-    """
-    def create_table(self, machine_names: List[str]):
-        # Each machine has its own table
-        for machine in machine_names:
-            self.cursor.execute(f'''
-                CREATE TABLE IF NOT EXISTS {machine} (
-                    id SERIAL PRIMARY KEY,
-                    name TEXT NOT NULL,
-                    counter INTEGER,
-                    timestamp INTEGER,
-                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                );
-                ''')
-            self.conn.commit()
-    """
+
     def add_record(self, machine_name: str, counter:int, timestamp:int, product_name: str="Missing"):
         self.cursor.execute(f'''
-            INSERT INTO {self.table_name} (machine_name, sensor_counter, sensor_timestamp, created_at) VALUES (%s, %s, %s, %s);
+            INSERT INTO {self.table_name_impulses} (machine_name, sensor_counter, sensor_timestamp, created_at) VALUES (%s, %s, %s, %s);
             ''', (machine_name, counter, timestamp, datetime.now()))
         self.conn.commit()
 
@@ -64,8 +51,17 @@ class Database:
 
         return value
     
-    def drop_tables(self, machine_names: List[str]):
-        """Drops all tables with given names """
-        for machine in machine_names:
-            self.cursor.execute(f"DROP TABLE IF EXISTS {machine};")
-            self.conn.commit()
+    def update_machine_status(self, machine_name:str, status: str):
+        """
+        Database has unique constraint on machine_name.
+        If there is no machine name, row is created.
+        If there is machine name, then row status is updated.
+        """
+        self.cursor.execute(f"""
+        INSERT INTO {self.table_name_machines} (machine_name, status) 
+        VALUES (%s, %s) 
+        ON CONFLICT (machine_name) 
+        DO UPDATE SET status = EXCLUDED.status;
+        """, (machine_name, status))
+
+        self.conn.commit()

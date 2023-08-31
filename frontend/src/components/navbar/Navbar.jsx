@@ -8,7 +8,7 @@ export default function Navbar(){
             <a href="#" className="site-title">PlannersLittleHelper</a>
             <ul>
                 <CustomLink to='/'>Home</CustomLink>
-                <CustomLink to='/cycletimes/'>SV3 cycles</CustomLink>
+                <CustomLink to='/cycletimes/'>SV1 cycles</CustomLink>
                 <CustomLink to='/getPartDescription/'>Get by ID</CustomLink>
             </ul>
         </div>

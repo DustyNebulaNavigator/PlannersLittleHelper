@@ -1,19 +1,26 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {Route, Routes} from 'react-router-dom'
 import './App.css'
 
-import CycleTimesPage from './components/mi/CycleTimesPage'
+
+import Navbar from './components/navbar/Navbar'
+import CycleTimesPage from './components/MI/CycleTimesPage'
+import Home from './components/Home/index'
+import GetPartById from './components/Monitor/GetPartById'
 
 function App() {
-
-  
-
   return (
+    <>
+    <Navbar />
     <div className='container'>
-    <CycleTimesPage />
-      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cycletimes" element={<CycleTimesPage />} />
+        <Route path="/getPartDescription" element={<GetPartById />} />
+      </Routes>
+    
     </div>
+    </>
   )
 }
 

@@ -5,6 +5,7 @@ import MachineCycleTimeCard from './MachineCycleTimeCard'
 function CycleTimesPage (){
     const [data, setData] = useState([])
     const [machineStatuses, setmachineStatuses] = useState([])
+    const [monitorActiveWorks, setMonitorActiveWorks] = useState([])
   
   useEffect( () => {
     // Cycle time fetching
@@ -34,9 +35,31 @@ function CycleTimesPage (){
       }
     }
     fetchStatuses()
+
+    async function fetchMonitorActiveWorks() {
+      try{
+        const response = await fetch(`${import.meta.env.VITE_API_URL}partNr/monitor_cycle_times/`)
+        if (!response.ok) {
+          throw new Error('Network response not ok partNr/monitor_cycle_times/')
+        }
+        const result = await response.json();
+        setMonitorActiveWorks(result)
+      }catch (error) {
+        console.log('Error fetching data:', error)
+      }
+    }
+    fetchMonitorActiveWorks()
+
   },[])
     
-    return <div className='grid grid--4-cols'>{data.map((machine) =><MachineCycleTimeCard machine_name={machine.machine_name} cycle_time={machine.cycle_time} statuses={machineStatuses} key={machine.machine_name}/>)}</div>
+    return <div className='grid grid--4-cols'>{data.map((machine) =>
+      <MachineCycleTimeCard 
+        machine_name={machine.machine_name} 
+        machine_cycle_time={machine.cycle_time} 
+        statuses={machineStatuses}
+        monitorActiveWorks={monitorActiveWorks}
+        key={machine.machine_name}
+        />)}</div>
 }
 
 export default CycleTimesPage

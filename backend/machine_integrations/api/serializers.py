@@ -19,3 +19,9 @@ class MachineStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Machines
         fields = ('machine_name', 'status')
+
+
+class AverageCycleTimeSerializer(serializers.Serializer):
+    avg_interval_cycle_time = serializers.FloatField()
+    #newest_interval_timestamp = serializers.JSONField()
+    newest_interval_timestamp = serializers.DateTimeField()

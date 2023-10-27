@@ -20,6 +20,18 @@
     justify-content: center;
     
 }
+
+.machine-card:hover{
+    transform: scale(1.01);
+    box-shadow: 0 0 15px 2px #ccc;
+    cursor: pointer;
+}
+
+.machine-card:active{
+    transform: scale(0.99);
+
+}
+
 .machine-name{
     font-size: 2rem;
     padding-bottom: 0.5rem;

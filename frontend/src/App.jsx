@@ -7,6 +7,7 @@ import Navbar from './components/navbar/Navbar'
 import CycleTimesPage from './components/MI/CycleTimesPage'
 import Home from './components/Home/index'
 import GetPartById from './components/Monitor/GetPartById'
+import MachineCycleTimeModal from './components/MI/MachineCycleTimeModal'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cycletimes" element={<CycleTimesPage />} />
         <Route path="/getPartDescription" element={<GetPartById />} />
+        <Route path="/macinecyclestats" element={<MachineCycleTimeModal />} />
       </Routes>
     
     </div>

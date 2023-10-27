@@ -1,6 +1,7 @@
 import './MachineCycleTimeCard.css'
 
-function MachineCycleTimeCard({machine_name, machine_cycle_time, monitorActiveWorks, statuses}){
+
+function MachineCycleTimeCard({hangleMachineClick, machine_name, machine_cycle_time, monitorActiveWorks, statuses}){
 
     const status_color = statuses.filter((status) => status.machine_name === machine_name)[0].status
     
@@ -14,7 +15,7 @@ function MachineCycleTimeCard({machine_name, machine_cycle_time, monitorActiveWo
         isTooSlow = monitor_cycle_time < machine_cycle_time
     }
     return (
-        <div className={`machine-card ${status_color}`}>
+        <div className={`machine-card ${status_color}`} onClick={()=>hangleMachineClick(machine_name)}>
         <div  className="col-3 machine-name">
         <p></p>
         <h3 className="machine-name">{machine_name}</h3>

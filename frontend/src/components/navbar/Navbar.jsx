@@ -10,6 +10,7 @@ export default function Navbar(){
                 <CustomLink to='/'>Home</CustomLink>
                 <CustomLink to='/cycletimes/'>SV1 cycles</CustomLink>
                 <CustomLink to='/getPartDescription/'>Get by ID</CustomLink>
+                <CustomLink to='/macinecyclestats/?machine_name=M0202&lookback_days=1&interval_minutes=30'>TEST</CustomLink>
             </ul>
         </div>
     )

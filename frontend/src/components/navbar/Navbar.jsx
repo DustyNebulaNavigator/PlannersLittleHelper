@@ -8,9 +8,9 @@ export default function Navbar(){
             <a href="#" className="site-title">PlannersLittleHelper</a>
             <ul>
                 <CustomLink to='/'>Home</CustomLink>
-                <CustomLink to='/cycletimes/'>SV1 cycles</CustomLink>
-                <CustomLink to='/getPartDescription/'>Get by ID</CustomLink>
-                <CustomLink to='/macinecyclestats/?machine_name=M0202&lookback_days=1&interval_minutes=30'>TEST</CustomLink>
+                <CustomLink to='/cycletimes/'>Machines</CustomLink>
+                {false ?? <CustomLink to='/getPartDescription/'>Get by ID</CustomLink>}
+                
             </ul>
         </div>
     )

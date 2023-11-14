@@ -2,6 +2,10 @@ import { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
 
+// recharts doesn't export the default tooltip,
+// but it's located in the package lib so you can get to it anyways
+import DefaultTooltipContent from 'recharts/lib/component/DefaultTooltipContent';
+
 import './MachineCycleTimeModal.css'
 
 export default function MachineCycleTimeModal ({machineName, data, onClose, handleSubmit}){
@@ -40,6 +44,7 @@ export default function MachineCycleTimeModal ({machineName, data, onClose, hand
   }
 
 
+  
 
 
     return  (
@@ -54,6 +59,7 @@ export default function MachineCycleTimeModal ({machineName, data, onClose, hand
         <LineChart width={900} height={600} data={data}>
             <Line type="monotone" dataKey="avg_interval_cycle_time" stroke="#2196F3" strokeWidth={2}/>
             <CartesianGrid stroke="#ccc" />
+            
             <XAxis dataKey="newest_interval_timestamp" tickFormatter={(tickItem) => {
                 const date = new Date(tickItem);
                 const day = date.getDate().toString().padStart(2, '0');
@@ -61,9 +67,10 @@ export default function MachineCycleTimeModal ({machineName, data, onClose, hand
                 const year = date.getFullYear();
                 const hours = date.getHours().toString().padStart(2, '0');
                 const minutes = date.getMinutes().toString().padStart(2, '0');
-                return `${day}.${month}.${year} ${hours}:${minutes}`
+                return `|${hours}:${minutes} ${day}.${month}|`
                 //return date.toLocaleString(); // or any other format
               }}/>
+              
             <YAxis />
             <Tooltip />
         </LineChart>

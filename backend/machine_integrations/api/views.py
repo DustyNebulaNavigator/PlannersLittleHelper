@@ -25,7 +25,7 @@ class CycleTimeViewSet(ModelViewSet):
     serializer_class = CycleTimeSerializer
 
     def get_queryset(self):
-        """
+        
         lis_of_machine_names = [
             'M0153', 'M0083', 'M0082', 'M0081', 'M0151',
             'M0041', 'M0301', 'M0122', 'M0052', 'M0451',
@@ -34,7 +34,7 @@ class CycleTimeViewSet(ModelViewSet):
             'M0273', 'M0102', 'M0501', 'M0057', 'M0202',
             'M1002', 'M0221', 'M0352', 'M0402', 'M0901',
             'M0051', 'M0025', 'M0123', 'M0042', 'M0101',
-            'M0201', 'M0121', 'M0222', 'M0131', 'OTSI'
+            'M0201', 'M0121', 'M0222', 'M0131'
         ]
         """
         lis_of_machine_names = [
@@ -45,6 +45,7 @@ class CycleTimeViewSet(ModelViewSet):
             
              
         ]
+        """
         data = []
         one_day_ago = timezone.now() - timedelta(days=1)
         for machine in lis_of_machine_names:

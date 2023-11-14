@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Questrial&display=swap");
+
+
+.accordion-content {
+  display: none;
+  margin-bottom: 36px;
+  text-align: left;
+  font: normal normal 300 18px/35px Poppins;
+}
+
+.selected {
+    display: block;
+}
+
+.acc-heading {
+  display: flex;
+  align-items: center;
+  font: normal normal normal 25px/35px Questrial;
+  user-select: none;
+  cursor: pointer;
+  padding: 30px 0px;
+  margin: 0;
+}
+
+.acc-room-name {
+  flex-grow: 1;
+}
+
+.acc-chevron {
+  transform: rotate(180deg);
+  height: 20px;
+  margin-left: 20px;
+  transition: 0.2s;
+}
+
+.acc-item {
+  transition: 1s;
+  border-bottom: 1px solid #aaa;
+}
+
+.acc-item:last-child {
+  border-bottom: none;
+}

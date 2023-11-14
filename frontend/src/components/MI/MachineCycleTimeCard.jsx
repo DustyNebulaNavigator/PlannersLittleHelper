@@ -2,7 +2,7 @@ import './MachineCycleTimeCard.css'
 
 
 function MachineCycleTimeCard({hangleMachineClick, machine_name, machine_cycle_time, monitorActiveWorks, statuses}){
-
+    
     const status_color = statuses.filter((status) => status.machine_name === machine_name)[0].status
     
     // Get active work on this machine, if status is green
